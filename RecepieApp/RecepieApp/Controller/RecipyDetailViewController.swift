@@ -8,23 +8,25 @@
 import UIKit
 
 class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var recipy: Recipe?
+    var hit: Hit?
     
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (recipy?.hits.first?.recipe.ingredients.count)!
+//        return (recipy?.hits.first?.recipe.ingredients.count)!
+        return (hit!.recipe.ingredients.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingridientCell", for: indexPath)
         
-        cell.textLabel?.text = recipy?.hits.first?.recipe.ingredients[indexPath.row].food
-        cell.detailTextLabel!.text = (recipy!.hits.first!.recipe.ingredients[indexPath.row].quantity == 0.0 ? "" : String(recipy!.hits.first!.recipe.ingredients[indexPath.row].quantity)) + " " + (recipy!.hits.first!.recipe.ingredients[indexPath.row].measure == "<unit>" ? " pieces" : (recipy!.hits.first!.recipe.ingredients[indexPath.row].measure ?? ""))
+        cell.textLabel?.text = hit!.recipe.ingredients[indexPath.row].food.capitalized
+        cell.detailTextLabel!.text = (hit!.recipe.ingredients[indexPath.row].quantity == 0.0 ? "" : String(hit!.recipe.ingredients[indexPath.row].quantity)) + " " + (hit!.recipe.ingredients[indexPath.row].measure == "<unit>" ? " pieces" : (hit!.recipe.ingredients[indexPath.row].measure ?? ""))
         return cell
     }
     
 
+    @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var recipyTitle: UILabel!
     @IBOutlet weak var recipyImage: UIImageView!
     
@@ -39,36 +41,40 @@ class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         recipyIngridients.delegate = self
         recipyIngridients.dataSource = self
         initData()
+        sendButton.backgroundColor = UIColor.systemPink
+        
         // Do any additional setup after loading the view.
     }
     
     private func initData(){
-        let recipyData = recipy?.hits.first?.recipe
+        let recipyData = hit?.recipe
         recipyTitle.text = recipyData?.label
         recipyImage.sd_setImage(with: URL(string: recipyData!.image))
-        recipyDietType.text = recipyData?.dietLabels.first
+        recipyDietType.text = recipyData!.dietLabels.first
         recipyCalories.text = String(recipyData!.calories.rounded())
-        recipyTime.text = String(recipyData!.totalTime) + " min"
+        recipyTime.text = String(recipyData!.totalTime == 0 ? 100 : recipyData!.totalTime) + " min"
     }
     
     @IBAction func recipyOpenInBrowser(_ sender: Any) {
+        
     }
     
     @IBAction func saveRacipyBtn(_ sender: Any) {
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showWeb" {
+            if let destinationVC = segue.destination as? WEBViewController{
+                destinationVC.url = hit?.recipe.url
+            }
+        }
     }
-    */
+    
 
 }
