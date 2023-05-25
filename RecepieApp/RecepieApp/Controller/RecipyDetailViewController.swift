@@ -6,14 +6,14 @@
 //
 
 import UIKit
+import CoreData
 
 class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     var hit: Hit?
-    
-    
+    var data: [NSManagedObject] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return (recipy?.hits.first?.recipe.ingredients.count)!
         return (hit!.recipe.ingredients.count)
     }
     
@@ -26,7 +26,8 @@ class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
 
-    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var saveButtonOutlet: UIButton!
+    
     @IBOutlet weak var recipyTitle: UILabel!
     @IBOutlet weak var recipyImage: UIImageView!
     
@@ -36,10 +37,9 @@ class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var recipyCalories: UILabel!
     
-    
     @IBOutlet weak var recipyIngridients: UITableView!
     
-    
+    @IBOutlet weak var cookButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -47,9 +47,9 @@ class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITable
         recipyIngridients.delegate = self
         recipyIngridients.dataSource = self
         initData()
-        sendButton.backgroundColor = UIColor.systemPink
+        fetchCoreData()
+        isSaved() ? saveButtonOutlet.setTitle("Saved", for: .normal) : saveButtonOutlet.setTitle("Save", for: .normal)
         
-        // Do any additional setup after loading the view.
     }
     
     private func initData(){
@@ -61,12 +61,12 @@ class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITable
         recipyTime.text = String(recipyData!.totalTime == 0 ? 100 : recipyData!.totalTime) + " min"
     }
     
-    @IBAction func recipyOpenInBrowser(_ sender: Any) {
-        
-    }
     
-    @IBAction func saveRacipyBtn(_ sender: Any) {
+    @IBAction func saveRecipeButton(_ sender: Any) {
+        saveDataToCoreData()
+        saveButtonOutlet.setTitle("Saved", for: .normal)
     }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWeb" {
@@ -76,5 +76,79 @@ class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    func saveDataToCoreData(){
+        
+        let rawData = hit?.recipe
+        let recipeTitle = rawData!.label
+        let recipeImage = rawData!.image
+        let recipeUrl = rawData!.url
 
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entityName = "SavedRecipes"
+        
+        // Check if the string already exists in Core Data
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "title = %@", recipeTitle)
+        fetchRequest.predicate = NSPredicate(format: "image = %@", recipeImage)
+        fetchRequest.predicate = NSPredicate(format: "url = %@", recipeUrl)
+        
+        do {
+            let fetchResults = try managedContext.fetch(fetchRequest)
+            if fetchResults.isEmpty {
+                // The string doesn't exist, create a new object and save it
+                guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedContext) else {
+                    return
+                }
+                
+                let object = NSManagedObject(entity: entity, insertInto: managedContext)
+                object.setValue(recipeTitle, forKey: "title")
+                object.setValue(recipeImage, forKey: "image")
+                object.setValue(recipeUrl, forKey: "url")
+                
+                do {
+                    try managedContext.save()
+                    
+                    print("String data saved to Core Data successfully.")
+                } catch {
+                    print("Error saving string data to Core Data: \(error.localizedDescription)")
+                }
+            } else {
+                print("String data already exists in Core Data.")
+            }
+        } catch {
+            print("Error fetching data from Core Data: \(error.localizedDescription)")
+        }
+    }
+    
+    func fetchCoreData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "SavedRecipes") // Replace with your actual entity name
+        
+        do {
+            data = try managedContext.fetch(fetchRequest)
+        } catch {
+            print("Error fetching data from Core Data: \(error.localizedDescription)")
+        }
+    }
+    
+    func isSaved() -> Bool{
+        for i in data{
+            let savedTitle = (i.value(forKey: "title") as? String) ?? ""
+            if hit?.recipe.label == savedTitle{
+                return true
+            }
+        }
+        return false
+    }
+    
 }

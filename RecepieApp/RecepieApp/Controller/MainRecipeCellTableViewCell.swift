@@ -19,6 +19,7 @@ class MainRecipeCellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var recipeName: UILabel!
     
+    @IBOutlet weak var country: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -55,9 +55,10 @@ class MainTableViewController: UITableViewController {
         override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "mainRecipeCell", for: indexPath) as! MainRecipeCellTableViewCell
             
+            cell.country.text = hits[indexPath.row].recipe.cuisineType.first?.capitalized
             cell.recipeName.text = hits[indexPath.row].recipe.label
             cell.recipeRating.text = hits[indexPath.row].recipe.yield.description
-            cell.recipeImage.sd_setImage(with: URL(string: (hits[indexPath.row].recipe.image) ))
+            cell.recipeImage.sd_setImage(with: URL(string: (hits[indexPath.row].recipe.image)))
             cell.recipeTime.text = String(hits[indexPath.row].recipe.totalTime == 0 ? 100 : hits[indexPath.row].recipe.totalTime) + " min"
             
             let caution = hits[indexPath.row].recipe.cautions.first
@@ -67,7 +68,7 @@ class MainTableViewController: UITableViewController {
                 cell.recipeCaution.backgroundColor = UIColor.systemPink
             }
             else{
-                cell.recipeCaution.text = "Safe"
+                cell.recipeCaution.text = "Healthy"
                 cell.recipeCaution.backgroundColor = UIColor.systemMint
             }
             cell.recipeCaution.textColor = UIColor.white
