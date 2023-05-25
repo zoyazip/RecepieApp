@@ -30,7 +30,7 @@
 
 /* Begin PBXFileReference section */
 		2F0C28BC2A1A3B1C00E5C13C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		2F6AF4112A14157300E37E29 /* RecepieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecepieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F6AF4112A14157300E37E29 /* RecipeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F6AF4142A14157300E37E29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F6AF4162A14157300E37E29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2F6AF41B2A14157300E37E29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		2F6AF4122A14157300E37E29 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2F6AF4112A14157300E37E29 /* RecepieApp.app */,
+				2F6AF4112A14157300E37E29 /* RecipeApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,9 +196,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2F6AF4102A14157300E37E29 /* RecepieApp */ = {
+		2F6AF4102A14157300E37E29 /* RecipeApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2F6AF4282A14157700E37E29 /* Build configuration list for PBXNativeTarget "RecepieApp" */;
+			buildConfigurationList = 2F6AF4282A14157700E37E29 /* Build configuration list for PBXNativeTarget "RecipeApp" */;
 			buildPhases = (
 				2F6AF40D2A14157300E37E29 /* Sources */,
 				2F6AF40E2A14157300E37E29 /* Frameworks */,
@@ -208,12 +208,12 @@
 			);
 			dependencies = (
 			);
-			name = RecepieApp;
+			name = RecipeApp;
 			packageProductDependencies = (
 				2FA4D57F2A1A565A001C4EE7 /* SDWebImage */,
 			);
 			productName = RecepieApp;
-			productReference = 2F6AF4112A14157300E37E29 /* RecepieApp.app */;
+			productReference = 2F6AF4112A14157300E37E29 /* RecipeApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -231,7 +231,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2F6AF40C2A14157300E37E29 /* Build configuration list for PBXProject "RecepieApp" */;
+			buildConfigurationList = 2F6AF40C2A14157300E37E29 /* Build configuration list for PBXProject "RecipeApp" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -247,7 +247,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2F6AF4102A14157300E37E29 /* RecepieApp */,
+				2F6AF4102A14157300E37E29 /* RecipeApp */,
 			);
 		};
 /* End PBXProject section */
@@ -481,7 +481,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2F6AF40C2A14157300E37E29 /* Build configuration list for PBXProject "RecepieApp" */ = {
+		2F6AF40C2A14157300E37E29 /* Build configuration list for PBXProject "RecipeApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F6AF4262A14157700E37E29 /* Debug */,
@@ -490,7 +490,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2F6AF4282A14157700E37E29 /* Build configuration list for PBXNativeTarget "RecepieApp" */ = {
+		2F6AF4282A14157700E37E29 /* Build configuration list for PBXNativeTarget "RecipeApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F6AF4292A14157700E37E29 /* Debug */,
