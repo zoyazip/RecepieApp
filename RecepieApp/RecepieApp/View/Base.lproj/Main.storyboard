@@ -11,13 +11,13 @@
         <!--Recipies-->
         <scene sceneID="D6M-Le-FiI">
             <objects>
-                <tableViewController id="qL5-AA-ls0" customClass="MainTableViewController" customModule="RecepieApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="qL5-AA-ls0" customClass="MainTableViewController" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="EyN-2W-db2">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainRecipeCell" rowHeight="150" id="LWf-Gm-MTL" customClass="MainRecipeCellTableViewCell" customModule="RecepieApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainRecipeCell" rowHeight="150" id="LWf-Gm-MTL" customClass="MainRecipeCellTableViewCell" customModule="RecipeApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="430" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LWf-Gm-MTL" id="BUF-OY-1el">
@@ -149,7 +149,7 @@
         <!--Recipy Detail View Controller-->
         <scene sceneID="5YZ-PN-zL7">
             <objects>
-                <viewController id="eZb-YG-lGa" customClass="RecipyDetailViewController" customModule="RecepieApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eZb-YG-lGa" customClass="RecipyDetailViewController" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Jx-3y-7a8">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -371,7 +371,7 @@
         <!--View Controller-->
         <scene sceneID="Rdy-Gr-9YT">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Rss-X2-yq6" customClass="WEBViewController" customModule="RecepieApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Rss-X2-yq6" customClass="WEBViewController" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qus-XZ-g3D">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -406,13 +406,13 @@
         <!--Saved-->
         <scene sceneID="dtV-fd-tAi">
             <objects>
-                <tableViewController id="DfI-bG-wNA" customClass="SavedTableViewController" customModule="RecepieApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="DfI-bG-wNA" customClass="SavedTableViewController" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="cjR-rv-One">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="savedRecipeCell" rowHeight="114" id="mJs-19-NhT" customClass="SavedRecipeCellTableViewCell" customModule="RecepieApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="savedRecipeCell" rowHeight="114" id="mJs-19-NhT" customClass="SavedRecipeCellTableViewCell" customModule="RecipeApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="430" height="114"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mJs-19-NhT" id="MN0-3m-5Ax">
@@ -535,7 +535,7 @@
         <!--Info View Controller-->
         <scene sceneID="IbK-5X-RAF">
             <objects>
-                <viewController id="JUC-yc-5rY" customClass="InfoViewController" customModule="RecepieApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="JUC-yc-5rY" customClass="InfoViewController" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Knb-ne-LFf">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -698,22 +698,22 @@
         <!--Projects View Controller-->
         <scene sceneID="EPC-Xw-tYA">
             <objects>
-                <viewController id="pXj-3y-3y2" customClass="ProjectsViewController" customModule="RecepieApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pXj-3y-3y2" customClass="ProjectsViewController" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HNw-Ue-6x1">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wls-oR-xgE">
-                                <rect key="frame" x="20" y="112.99999999999999" width="390" height="57.333333333333329"/>
+                                <rect key="frame" x="20" y="113.00000000000001" width="390" height="57.666666666666671"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xOe-dW-WPw">
-                                <rect key="frame" x="20" y="178.33333333333331" width="390" height="670.66666666666674"/>
+                                <rect key="frame" x="20" y="178.66666666666669" width="390" height="670.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectCell" rowHeight="50" id="cc5-rD-M5T" customClass="ProjectCellTableViewCell" customModule="RecepieApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectCell" rowHeight="50" id="cc5-rD-M5T" customClass="ProjectCellTableViewCell" customModule="RecipeApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="390" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cc5-rD-M5T" id="UXj-i7-chb">
