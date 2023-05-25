@@ -13,19 +13,8 @@ class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITable
     var hit: Hit?
     var data: [NSManagedObject] = []
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (hit!.recipe.ingredients.count)
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ingridientCell", for: indexPath)
-        
-        cell.textLabel?.text = hit!.recipe.ingredients[indexPath.row].food.capitalized
-        cell.detailTextLabel!.text = (hit!.recipe.ingredients[indexPath.row].quantity == 0.0 ? "" : String(hit!.recipe.ingredients[indexPath.row].quantity)) + " " + (hit!.recipe.ingredients[indexPath.row].measure == "<unit>" ? " pieces" : (hit!.recipe.ingredients[indexPath.row].measure ?? ""))
-        return cell
-    }
     
-
     @IBOutlet weak var saveButtonOutlet: UIButton!
     
     @IBOutlet weak var recipyTitle: UILabel!
@@ -49,8 +38,21 @@ class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITable
         initData()
         fetchCoreData()
         isSaved() ? saveButtonOutlet.setTitle("Saved", for: .normal) : saveButtonOutlet.setTitle("Save", for: .normal)
-        
+        print(hit?.recipe.url)
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (hit!.recipe.ingredients.count)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ingridientCell", for: indexPath)
+        
+        cell.textLabel?.text = hit!.recipe.ingredients[indexPath.row].food.capitalized
+        cell.detailTextLabel!.text = (hit!.recipe.ingredients[indexPath.row].quantity == 0.0 ? "" : String(hit!.recipe.ingredients[indexPath.row].quantity)) + " " + (hit!.recipe.ingredients[indexPath.row].measure == "<unit>" ? " pieces" : (hit!.recipe.ingredients[indexPath.row].measure ?? ""))
+        return cell
+    }
+    
     
     private func initData(){
         let recipyData = hit?.recipe
@@ -66,7 +68,7 @@ class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITable
         saveDataToCoreData()
         saveButtonOutlet.setTitle("Saved", for: .normal)
     }
-
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWeb" {
@@ -82,7 +84,7 @@ class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITable
         let recipeTitle = rawData!.label
         let recipeImage = rawData!.image
         let recipeUrl = rawData!.url
-
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -132,7 +134,7 @@ class RecipyDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "SavedRecipes") // Replace with your actual entity name
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "SavedRecipes")
         
         do {
             data = try managedContext.fetch(fetchRequest)

@@ -12,18 +12,16 @@ import SDWebImage
 class SavedTableViewController: UITableViewController {
     var data: [NSManagedObject] = []
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         fetchCoreData()
     }
+    
     func fetchCoreData() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -31,7 +29,7 @@ class SavedTableViewController: UITableViewController {
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "SavedRecipes") // Replace with your actual entity name
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "SavedRecipes")
         
         do {
             data = try managedContext.fetch(fetchRequest)
@@ -59,7 +57,7 @@ class SavedTableViewController: UITableViewController {
         
         let savedRecipeLabel = object.value(forKey: "title") as? String
         let savedRecipeImage = object.value(forKey: "image") as? String
-    
+        
         cell.savedLabel.text = savedRecipeLabel
         cell.savedImage.sd_setImage(with: URL(string: savedRecipeImage ?? ""))
         
@@ -69,24 +67,24 @@ class SavedTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Get the managed object to delete
             let objectToDelete = data[indexPath.row]
             
-            // Remove the object from Core Data
             deleteObjectFromCoreData(object: objectToDelete)
             
-            // Update your data source and table view
             data.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
+    @IBAction func removeAllButton(_ sender: Any) {
+        clearCoreData()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "savedSegue" {
             guard let destinationVC = segue.destination as? WEBViewController, let row = tableView.indexPathForSelectedRow?.row else { return
             }
-
+            
             destinationVC.url = data[row].value(forKey: "url") as? String
             
         }
@@ -95,15 +93,20 @@ class SavedTableViewController: UITableViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-
+        
         let managedContext = appDelegate.persistentContainer.viewContext
-
+        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedRecipes")
         
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
         do {
             try managedContext.execute(deleteRequest)
+            
+            // Clear the data array
+            data = []
+            
+            tableView.reloadData()
             print("Core Data cleared successfully.")
         } catch {
             print("Error clearing Core Data: \(error.localizedDescription)")
@@ -126,7 +129,7 @@ class SavedTableViewController: UITableViewController {
             print("Error deleting object from Core Data: \(error.localizedDescription)")
         }
     }
-
+    
     
     /*
      // Override to support conditional editing of the table view.
